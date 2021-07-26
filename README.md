@@ -1,4 +1,4 @@
-## In this repository I report some pieces of code of the most relevant programming exams I have taken during my bachleor's and master's in Computer Engineering at Politecnico di Torino.
+## In this repository I report some pieces of code of the most relevant and diverse programming exams I have taken during my bachleor's and master's in Computer Engineering at Politecnico di Torino. This in order to give a quick overview of the programming skills acquired2 while studying at Politecnico.
 ## The exams were part of the following courses:
 <br>
 
@@ -20,7 +20,7 @@
 <br>
 
 ### The code devoped during bigger curricular projects is reported in separate repositories:
-- [Machine Learning and Deep Learning](gioele-scaletta/ML-DL-FPAR)
+- [Machine Learning and Deep Learning](https://github.com/gioele-scaletta/ML-DL-FPAR)
 - [System and Device Programming](https://github.com/gioele-scaletta/Graph-Coloring-System-Device-Programming-Project)
 - [Software Engineering](https://github.com/gioele-scaletta/EZShop-Software-Engineering-Project)
 - [Web Applications](https://github.com/gioele-scaletta/Web-Applications-Exam)
