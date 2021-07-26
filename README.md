@@ -1,3 +1,5 @@
+#manca aggiustare tutti codice + tutti requirement qualcuno gia presente foto da aggiungere qualcuno usare link tipo big
+
 ### In this repository I report some pieces of code of the most relevant and diverse programming exams I have taken during my bachleor's and master's in Computer Engineering at Politecnico di Torino. This with the only purpose of giving a quick overview of the programming skills acquired while studying at Politecnico. The exams were part of the following courses:
 <br>
 

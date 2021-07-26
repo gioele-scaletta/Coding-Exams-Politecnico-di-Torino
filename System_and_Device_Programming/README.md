@@ -1,5 +1,5 @@
 # ES DUE E TRE ANCORA DA METTERE A POSTO
 
-## In [exam.cpp] you can find the code I developed during the System and Device Programming. The exam assignment is available below:
+## In [exam.cpp](https://github.com/gioele-scaletta/Coding-Exams-Politecnico-di-Torino/blob/main/System_and_Device_Programming/exam.cpp) you can find the code I developed during the System and Device Programming. The exam assignment is available below:
 
 ### The available time to develop the exam was not fixed since the exam included other exercises too.
