@@ -1,4 +1,5 @@
-## In [exam.cpp] you can find the code I developed during the System and Device Programming.
-## The exam assignment is available below:
+# ES DUE E TRE ANCORA DA METTERE A POSTO
 
-## The available time to develop the exam was not fixed since the exam included other exercises too.
+## In [exam.cpp] you can find the code I developed during the System and Device Programming. The exam assignment is available below:
+
+### The available time to develop the exam was not fixed since the exam included other exercises too.
