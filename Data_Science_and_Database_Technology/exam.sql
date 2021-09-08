@@ -9,11 +9,12 @@ SELECT
 FROM
    LOCATION AS L,
    TIME AS T,
-   STATS AS A 
+   STATS AS S,
+   AMENITIES AS A,
+   HOTEL AS H
 WHERE
    Amenity = 'pool' 
-   AND L.CodL = S.CodL 
-   AND T.CodT = S.CodT 
+   S.CodH=H.CodH AND H.CodL=L.CodL AND H.CodH=A.CodH AND S.CodT=T.CodT
 GROUP BY
    Year,
    Month,
@@ -32,14 +33,15 @@ SELECT
                                     ROWS UNBOUNDED PRECEDING),
     RANK () OVER ( ORDER BY (SUM(TotalRatings) / SUM(NumberOfRatings) DESC) 
 FROM
-    < TABLES >  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   STATS AS S, USER AS U, LOCATION AS L, TIME AS T
 WHERE
-    Region = 'Piedmont' (
-    join
-        stats with user 
-        and user with location) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   S.CodU=U.CodU AND U.CodL=L.CodL AND S.CodT=T.CodT AND
+   Region = 'Piedmont'
+    
 GROUP BY
     Year, Month 		
+
+
 
 /*EXERCISE 3*/
 CREATE OR REPLACE TRIGGER 
