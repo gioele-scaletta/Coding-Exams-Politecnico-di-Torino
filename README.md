@@ -1,4 +1,4 @@
-### In this repository I report the code of the most relevant programming exams I have taken during my bachleor's and master's in Computer Engineering at Politecnico di Torino. This with the only purpose of giving an overview of the programming skills acquired while studying at Politecnico. The exams were part of the following courses:
+### In this repository I report the code of some relevant programming exams I have taken during my bachleor's and master's in Computer Engineering at Politecnico di Torino. This with the only purpose of giving an overview of the programming skills acquired while studying at Politecnico. The exams were part of the following courses:
 <br>
 
 ## Bachelor's:
