@@ -179,7 +179,6 @@ CVR 			EQU 0xE000E018
 Reset_Handler   PROC
                 EXPORT  Reset_Handler             [WEAK]
 
-
 				mov r0, #-10
 				mvn r0, #10
 

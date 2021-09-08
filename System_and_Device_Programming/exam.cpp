@@ -1,5 +1,4 @@
-//FIRST EXERCISE (this exercise was slighlty refined after the exam to check it with an example)
-
+//Exercise 1 (this exercise was slighlty refined after the exam to check it with an example)
 #include <windows.h>
 #include <tchar.h>
 #include <stdio.h>
@@ -115,129 +114,143 @@ void WINAPI threadF(LPVOID lpParam) {
 	ExitThread(0);
 }
 
-//SECOND EXERCISE
 
 
-barrier is needed between A and B. After the barrier is intiialized between A and B the following
+//Exercise 2
+
+/*barrier is needed between A and B. After the barrier is intiialized between A and B the following
 code has to be inserted if we implemented the barrier from scratch supposing we defined the
-following data struct:
+following data struct:*/
+
 typedef struct b{
 int cnt; //to check how many threadsw reached the barrier
 sem_t * barrier_sem;
 pthread_mutex_t *mtx; // to protect cnt
 } barrier_t;
-barrier_t * barrier; //allocations and inits missing since only code between A and B was
-requested!!!
+
+barrier_t * barrier; //allocations and inits missing since only code between A and B was requested!!!
+
 //CODE BETWEEN A AND B: ( in each thread function)
-Q1.
+
+//Q1.
 pthread_mutex_lock(barrier->mtx);
-if(++barrier->cnt == N){ //last thread enters the if and let all threads (that are waiting on sem-wait)
+if (++barrier->cnt == N){ //last thread enters the if and let all threads (that are waiting on sem-wait)
 go to section B
 for(i=0; i<N; i++)
 sem_post(barrier->barrier_sem);
 }
 pthread_mutex_unlock(barrier->mutex);
 sem_wait(barrier->barrier_sem);
-Q2.
-6/24/21 9:52 PM Pagina 7 di 14
-In case this code is inserted into a loop another barrier is needed to decrease the counter and
+
+//Q2.
+/*In case this code is inserted into a loop another barrier is needed to decrease the counter and
 As a matter of fact with the code shown above one faster thread after being let go by the
 sem_post could
 start another iteration by arriving twice to sem_post while the loop of sem_post is not finished yet.
-The following code should be added to the first part shown before
+The following code should be added to the first part shown before*/
+
 pthread_mutex_lock(barrier1->mtx);
 if(--barrier1->cnt==0){
 for (i=0;i<N; i++)
 sem_post(barrier1->barrier_sem);
 }
+
 pthread_mutex_unlock(barrier1->mtx);
 sem_wait(barrier1->barrier_sem)
-//and after this the loop can start again
+	//and after this the loop can start again
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-Need to use 2 different semaphores.
-Why not POSIX barrier in the second case?
 
-//THIRD EXERCISE
 
-void admin_f(){
-var=10;
-adderCV.notify_all();
-6/24/21 9:52 PM Pagina 4 di 14
-adminCV.wait()
-cout << var <<
-return;
-}
-void adder_f(){
-adderCV.wait();
-while(1){
-m.lock();
-if(var<15){
-var+=rand()%5;
-if(var>=15){
-adminCV.notify_one();
-m.unlock();
-return;
-}
-} else{
-m.unlock();
-return;
-}
-m.unlock();
-}
-//the notify part of the termination conditipn "when the 3 thread finishes the admin thread prunts
-final value
-//is already handled in the main so here I just have to notify the admin when var is changed and it
-is higer tahn 15 so that the main thread check if the value is higher
-return; //()
-}
+//Exercise 3
 
+	void admin_f()
+{
+	std::unique_lock<std::mutex> admin_lock{m};
+	var = 10;
+	adderCV.notify_all();
+
+	adminCV.wait(admin_lock);
+	cout << var << 
+	
+	return;
+}
+void adder_f()
+{
+	std::unique_lock<std::mutex> adder_lock{m};
+	adderCV.wait(adder_lock); // wait for initialization on the conditional variable
+	while (1)
+	{
+		m.lock();
+		if (var < 15)
+		{
+			var += rand() % 5;
+			if (var >= 15) // if var is over the threshold, notify admin and exit
+			{
+				adminCV.notify_one();
+				m.unlock();
+				return;
+			}
+		}
+		else
+		{
+			m.unlock();
+			return;
+		}
+		m.unlock();
+	}
+	//the notify part of the termination conditipn "when the 3 thread finishes the admin thread prints final value
+	//is already handled in the main so here I just have to notify the admin when var is changed and it	is higer tahn 15 so that the main thread check if the value is higher return; //()
+}
 
 //not ok check sol
 
 
 
-// FOURTH EXERCISE
+// Exercise 5
 
-#define FULL 1000000000
-#define OFFSET 100000000
+//(closing of all handles missing just code of the exam)
+
+
+
 INT cntlastbyte(TCHAR *filename)
 {
 	HANDLE file, hMao;
 	DWORD FileSize, FilePos;
 	DWORD StartingOffset;
-	ov = {0, 0, 0, 0, NULL} TCHAR * pFile;
+	LONG_INT offset, size;
+	ov = {0, 0, 0, 0, NULL} 
+	TCHAR * pFile, start;
 	TCHAR c;
 	int lastequalzero = 0, lastequalone = 0;
 	int i;
 
-	file = CreateFile(filename, GENERIC_READ, OPEN_EXISTING, 0, NULL, FILE_ATTRIBUTE_NORMAL, NULL); //I don't remember the syntax of this function and the order of parameters
+	offset.QuadPart = 100*1<<20;
+	size.QuadPart = 1<<a30; 
+	file = CreateFile(filename, GENERIC_READ, OPEN_EXISTING, 0, NULL, FILE_ATTRIBUTE_NORMAL, NULL); 
 	GetFileSize(file, &FileSize);
 	hMap = CreateFileMapping(file, NULL, 0, FileSize.HighPat, FileSize.LowPart);
 	FilePos.QuadPart = OFFSET * sizeof(TCHAR);
-	6 / 24 / 21 9 : 52 PM Pagina 10 di 14 pFile = (TCHAR *)MapViewOfFile(hMap, 0, FilePos.HighPart, FilePos.LowPart, (FULLOFFSET) * sizeof(TCHAR));
+	pFile = (TCHAR *)MapViewOfFile(hMap, 0, FilePos.HighPart, FilePos.LowPart, (FULLOFFSET) * sizeof(TCHAR));
 	i = 0;
-	while (i < (FULL - OFFSET) * sizeof(TCHAR))
+	
+	while (pFile < (offset.QuadPart + size.QuadPart))
 	{
-		c = pFile[i];
+		c = pFile;
 		//shift left and the right back t get only last bit
-		c << 7;
-		c >> 7;
+		c = c << 7;
+		c = c >> 7;
 
-if(c == ?) // I don't know how to check the value of the remaining bit -> don't remember ASCII
-	entries 0 and 1 lastequalone++;
-else
-	lastequalzero++,
-		i += sizeof(TCHAR);
+		if(c == 1) // I don't know how to check the value of the remaining bit -> don't remember ASCII
+			lastequalone++;
+		else
+			lastequalzero++,
+
+		pFile++;
 	}
-	_tprintf("Contains %d last bits equal to 1 and %d last bits equal to 0", &lastequalone,
-			 &lastequalzero);
+
+	_tprintf("Contains %d last bits equal to 1 and %d last bits equal to 0", lastequalone, lastequalzero);
+
 	return 0;
+
 }
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-Use 1<<30 and 1<<20?
-Use pFile++ not array notation.
-c<<7 and c>>7 do nothing (good idea wrong syntax).
-? = 0 or 1?
-Need to close all handles and co.
