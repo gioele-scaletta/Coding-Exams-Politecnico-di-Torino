@@ -15,7 +15,7 @@
 - [Computer Architectures](https://github.com/gioele-scaletta/Coding-Exams-Politecnico-di-Torino/tree/main/Computer_Architectures)
 - [Data Science and Database Technology](https://github.com/gioele-scaletta/Coding-Exams-Politecnico-di-Torino/tree/main/Data_Science_and_Database_Technology)
 
-<br>
+
 <br>
 
 ## The code devoped during bigger team projects is reported in separate repositories:
